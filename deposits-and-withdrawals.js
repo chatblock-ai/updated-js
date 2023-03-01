@@ -1,54 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Helmet } from 'react-helmet'
-
-import Component22 from '../components/component22'
-import './deposits-and-withdrawals.css'
+import Component22 from './component22'
+import projectStyles from '.style.module.css'
+import styles from './deposits-and-withdrawals.module.css'
 
 const DepositsAndWithdrawals = (props) => {
+  const [activeButton, setActiveButton] = useState('deposit')
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName)
+  }
+
   return (
-    <div className="deposits-and-withdrawals-container">
-      <Helmet>
-        <title>Deposits-and-Withdrawals - Miniature Spherical Gorilla</title>
-        <meta
-          property="og:title"
-          content="Deposits-and-Withdrawals - Miniature Spherical Gorilla"
-        />
-      </Helmet>
-      <div className="deposits-and-withdrawals-container1">
+    <div className={styles['container']}>
+      <div className={styles['container1']}>
         <Component22></Component22>
-        <Link to="/sign-in" className="deposits-and-withdrawals-navlink">
+        <Link to="/signin" className={styles['navlink']}>
           <img
             src="/playground_assets/simple-home-with-pixel-art-style_475147-414%20%5B1%5D-modified-300w.png"
             alt="Home button"
-            className="deposits-and-withdrawals-image"
+            className={styles['image']}
           />
         </Link>
         <button
           name="Submit"
           type="submit"
-          className="deposits-and-withdrawals-button button"
+          className={` ${styles['button']} ${projectStyles['button']} `}
         >
           Submit
         </button>
-        <div className="deposits-and-withdrawals-container2">
+        <div className={styles['container2']}>
           <button
             name="deposit"
             type="button"
-            className="deposits-and-withdrawals-button1 button"
+            className={`${styles['button1']} ${projectStyles['button']} ${activeButton === 'deposit' ? styles['activeButton'] : ''}`}
+            onClick={() => handleButtonClick('deposit')}
           >
             DEPOSIT
           </button>
           <button
             name="withdraw"
             type="button"
-            className="deposits-and-withdrawals-button2 button"
+            className={`${styles['button2']} ${projectStyles['button']} ${activeButton === 'withdraw' ? styles['activeButton'] : ''}`}
+            onClick={() => handleButtonClick('withdraw')}
           >
             WITHDRAW
           </button>
         </div>
-        <div className="deposits-and-withdrawals-container3">
+        <div className={styles['container3']}>
           <input
             type="number"
             min="0.01"
@@ -56,13 +56,13 @@ const DepositsAndWithdrawals = (props) => {
             step="0.1"
             placeholder="0.0"
             autoComplete="0.0"
-            className="deposits-and-withdrawals-textinput input button"
+            className={` ${styles['textinput']} ${projectStyles['input']} ${projectStyles['button']} `}
           />
           <button
             id="drop"
             name="drop menu"
             type="button"
-            className="deposits-and-withdrawals-button3 button"
+            className={` ${styles['button3']} ${projectStyles['button']} `}
           >
             &gt;
           </button>
@@ -71,7 +71,7 @@ const DepositsAndWithdrawals = (props) => {
       <img
         src="/playground_assets/layers%20%5B6%5D-200h.png"
         alt="image"
-        className="deposits-and-withdrawals-image1"
+        className={styles['image1']}
       />
     </div>
   )
